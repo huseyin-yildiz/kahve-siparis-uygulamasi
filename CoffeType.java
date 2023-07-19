@@ -1,3 +1,7 @@
+/*
+ * Kahve Tipleri ve fiyatlarını barındırır.
+ */
+
 public enum CoffeType {
     COFFE_ESPRESSO(20),
     COFFE_DOUBLE_ESPRESSO(27),
@@ -14,7 +18,14 @@ public enum CoffeType {
         this.price = price;
     }
 
-    public int get_price(){
+    public int getPrice(){
         return this.price;
+    }
+
+    // Enum adini liste adina cevirir
+    public String toString(){
+        String name = this.name().substring(6).replace("_"," ");
+        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();  
+        return name;
     }
 }
