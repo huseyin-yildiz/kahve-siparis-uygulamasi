@@ -1,9 +1,9 @@
 public enum Material {
-    ESPRESSO,
-    DOPPIO,
-    HOT_WATER,
-    MILK_FOAM,
-    STREAMED_MILK,
-    HOT_CHOCOLATE
+    Material_ESPRESSO,
+    Material_DOPPIO,
+    Material_HOT_WATER,
+    Material_MILK_FOAM,
+    Material_STREAMED_MILK,
+    Material_HOT_CHOCOLATE
 
 }
