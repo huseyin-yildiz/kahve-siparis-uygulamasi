@@ -32,13 +32,24 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
     @Override
     public CoffeType takeOrder() {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Lütfen içmek istediğiniz kahvenin numarasını giriniz: ");
+        Integer selection;
         
-        Integer selection = scanner.nextInt();
+        // Dogru secim alinana kadar sorar.
+        while(true) {
+            System.out.print("Lütfen içmek istediğiniz kahvenin numarasını giriniz: ");
+            
+            selection = scanner.nextInt();
+            
+            if(selection > coffes.length || selection < 1)
+                System.out.println("Hata : Yanlis secim");
+            else
+                break;
+        }
+        
         System.out.println("Teşekkürler kahveniz hazırlanıyor.");
-        
+            
         return coffes[selection-1];
+            
     }
 
     // Verilen kahve tipini construct edip içeriklerini ekrana basar
