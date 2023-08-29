@@ -9,9 +9,9 @@ public interface ICoffeOrderer {
     public void presentCoffeMenu();
 
     // Sipariş al.
-    public CoffeType takeOrder();
+    public int takeOrder();
 
     // Kahveyi hazırla
-    public void prepareCoffe(CoffeType coffeType);
+    public void prepareCoffe(int selection);
 
 }

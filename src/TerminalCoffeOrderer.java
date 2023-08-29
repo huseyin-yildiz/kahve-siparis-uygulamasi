@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,11 +8,20 @@ import java.util.Scanner;
  */
 public class TerminalCoffeOrderer implements ICoffeOrderer{
 
-    private CoffeType[] coffes;
+    private List<Coffe> coffes;
 
-    // Tüm kahve tiplerini listeye atar.
     public TerminalCoffeOrderer() {
-        coffes = CoffeType.values();
+        
+        coffes = new ArrayList<Coffe>();
+
+        coffes.add(new Espresso());
+        coffes.add(new DoubleEspresso());
+        coffes.add(new Cappucino());
+        coffes.add(new CaffeLatte());
+        coffes.add(new Mocha());
+        coffes.add(new Americano());
+        coffes.add(new HotWater());
+        
     }
 
     // Tüm kahve tiplerini ücretleriyle basar
@@ -20,9 +30,9 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
         
         Integer i=0;
                 
-        for (CoffeType coffeType : coffes) 
+        for (Coffe coffe : coffes) 
         {
-            String item = String.format("%d.%s (%d ₺)", ++i, coffeType, coffeType.getPrice());
+            String item = String.format("%d.%s (%.2f ₺)", ++i, coffe.getName(), coffe.getPrice());
             System.out.println(item);
         }
 
@@ -30,7 +40,7 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
 
     // İstenilen kahve tipini kullanıcıdan alır ve CoffeType olarak döndürür.
     @Override
-    public CoffeType takeOrder() {
+    public int takeOrder() {
         Scanner scanner = new Scanner(System.in);
         Integer selection;
         
@@ -40,7 +50,7 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
             
             selection = scanner.nextInt();
             
-            if(selection > coffes.length || selection < 1)
+            if(selection > coffes.size() || selection < 1)
                 System.out.println("Hata : Yanlis secim");
             else
                 break;
@@ -48,13 +58,13 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
         
         System.out.println("Teşekkürler kahveniz hazırlanıyor.");
             
-        return coffes[selection-1];
+        return selection;
             
     }
 
     // Verilen kahve tipini construct edip içeriklerini ekrana basar
     @Override
-    public void prepareCoffe(CoffeType coffeType) {
+    public void prepareCoffe(int selection) {
         
         Coffe coffe;
         
@@ -62,14 +72,40 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
         String[] numbers = {"bir", "iki", "üç", "dört", "beş","altı","yedi", "sekiz", "dokuz", "on"};
         
         try {
-            // coffeType ile Coffe initialize eder
-            coffe = new Coffe(coffeType);
+            
+            switch (selection) {
+                case 1:
+                    coffe = new Espresso();
+                    break;
+                case 2:
+                    coffe = new DoubleEspresso();
+                    break;
+                case 3:
+                    coffe = new Cappucino();
+                    break;
+                case 4:
+                    coffe = new CaffeLatte();
+                    break;
+                case 5:
+                    coffe = new Mocha();
+                    break;
+                case 6:
+                    coffe = new Americano();
+                    break;
+                case 7:
+                    coffe = new HotWater();
+                    break;
+                
+                default:
+                    throw new Exception("Yanlis kahve secimi");
+            }
+
             
             // Seçilen kahve adını bas.
-            System.out.print( coffe + " seçtiniz. ");
+            System.out.print( coffe.getName() + " seçtiniz. ");
 
             // İçerikleri ekrana bas.
-            System.out.println(coffe.getMaterialString() + ". Afiyet Olsun.");
+            System.out.println(coffe);
         
         } catch (Exception e) {
             // Kahve tipi hatalı ise uyarı mesaji bas

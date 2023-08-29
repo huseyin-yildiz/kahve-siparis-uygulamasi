@@ -8,10 +8,10 @@ public class Main {
         coffeOrderer.presentCoffeMenu();
         
         // Sipariş alir
-        CoffeType orderedCoffe = coffeOrderer.takeOrder();
+        int order = coffeOrderer.takeOrder();
         
         // Siparis edilen kahveyi hazirlar.
-        coffeOrderer.prepareCoffe(orderedCoffe);
+        coffeOrderer.prepareCoffe(order);
     }
 
 }
