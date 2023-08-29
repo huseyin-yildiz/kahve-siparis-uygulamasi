@@ -69,50 +69,16 @@ public class TerminalCoffeOrderer implements ICoffeOrderer{
     public void prepareCoffe(int selection) {
         
         Coffe coffe;
-        
-        // Maks 10 doz oldugu varsayildi
-        String[] numbers = {"bir", "iki", "üç", "dört", "beş","altı","yedi", "sekiz", "dokuz", "on"};
-        
-        try {
-            
-            switch (selection) {
-                case 1:
-                    coffe = new Espresso();
-                    break;
-                case 2:
-                    coffe = new DoubleEspresso();
-                    break;
-                case 3:
-                    coffe = new Cappucino();
-                    break;
-                case 4:
-                    coffe = new CaffeLatte();
-                    break;
-                case 5:
-                    coffe = new Mocha();
-                    break;
-                case 6:
-                    coffe = new Americano();
-                    break;
-                case 7:
-                    coffe = new HotWater();
-                    break;
-                
-                default:
-                    throw new Exception("Yanlis kahve secimi");
-            }
 
-            
-            // Seçilen kahve adını bas.
-            System.out.print( coffe.getName() + " seçtiniz. ");
+        coffe = coffes[selection];
 
-            // İçerikleri ekrana bas.
-            System.out.println(coffe);
+        // Seçilen kahve adını bas.
+        System.out.print( coffe.getName() + " seçtiniz. ");
+
+        // İçerikleri ekrana bas.
+        System.out.println(coffe);
         
-        } catch (Exception e) {
-            // Kahve tipi hatalı ise uyarı mesaji bas
-            System.out.println(e);
-        }
+
 
         
 
